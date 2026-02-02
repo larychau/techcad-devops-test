@@ -69,21 +69,24 @@ pytest (тесты)
 
 Структура проекта
 techcad-devops-test/
-├── app/
-│   ├── main.py
-│   ├── model.py
-│   └── requirements.txt
-├── Dockerfile
-├── docker-compose.yml
-├── prometheus/
-│   └── prometheus.yml
-├── grafana/
-│   └── dashboards/
-│       └── techcad-dashboard.json
-├── loki/
+├── app/                         # Исходный код FastAPI сервиса
+│   ├── main.py                  # Основной файл приложения (эндпоинты)
+│   ├── model.py                 # Dummy ML-модель (LinearRegression)
+│   └── requirements.txt         # Python зависимости
+│
+├── loki/                        # Конфигурация Loki (хранилище логов)
 │   └── local-config.yaml
-├── promtail/
+│
+├── prometheus/                  # Конфигурация Prometheus (метрики)
+│   └── prometheus.yml
+│
+├── promtail/                    # Конфигурация Promtail (агент логов)
 │   └── config.yml
-└── .github/
-    └── workflows/
-        └── ci-cd.yml
+│
+├── .github/
+│   └── workflows/               # CI/CD пайплайн GitHub Actions
+│       └── ci-cd.yml
+│
+├── Dockerfile                   # Docker-образ FastAPI приложения
+├── docker-compose.yml           # Локальный запуск всех сервисов
+├── README.md                    # Документация проекта
