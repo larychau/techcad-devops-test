@@ -1,0 +1,26 @@
+name: CI/CD
+
+on: [push, pull_request]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install -r app/requirements.txt
+      - run: pip install black flake8 pytest
+
+      - run: black --check .
+      - run: flake8 .
+      - run: pytest
+
+      - uses: docker/build-push-action@v5
+        with:
+          push: false
+          tags: techcad/app:latest
